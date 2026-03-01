@@ -29,14 +29,14 @@ namespace Biblioteca.Controllers
                     _Logger.Error($"[UserController] Failed to create user: {name}");
                     return BadRequest("Failed to create user");
                 }
+            _Logger.Info($"[UserController] Successfully created user: {name}");
+            return Ok("User created successfully");
             }
             catch (Exception ex)
             {
                 _Logger.Error($"[UserController] Error creating user: {name}", ex);
                 return BadRequest($"Error creating user: {ex.Message}");
             }
-            _Logger.Info($"[UserController] Successfully created user: {name}");
-            return Ok("User created successfully");
 
         }
         [HttpGet]
