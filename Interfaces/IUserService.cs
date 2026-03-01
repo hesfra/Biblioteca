@@ -2,12 +2,12 @@ using Biblioteca.Entities;
 
 namespace Biblioteca.Interfaces;
 
-public interface IUserRepository
+public interface IUserService
 {
 
-    bool Create(User user);
+    bool Create(string name, string email);
     
-    bool Update(string id, User user);
+    bool Update(string id, UpdateUserRequest user);
 
 
     User? GetById(string id);

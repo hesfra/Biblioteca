@@ -6,7 +6,7 @@ public interface IUserStorage
 {
     bool Create(User user);
 
-    bool Update(string id, User user);
+    User? Update(string id, UpdateUserRequest updateRequest);
 
     User? GetById(string id);
 

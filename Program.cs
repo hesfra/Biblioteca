@@ -1,5 +1,9 @@
 using Biblioteca.Commons.Logging;
 using ILogger = Biblioteca.Commons.Logging.ILogger;
+using Biblioteca.Interfaces;
+using Biblioteca.Services;
+using Biblioteca.Storages.InMemory;
+using Biblioteca.Storages.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +19,13 @@ builder.Services.AddSwaggerGen();
 // Dependency Injection
 builder.Services.AddSingleton<ILogger, ConsoleLogger>();
 
-// Aqui tu registra teus storages
-// builder.Services.AddScoped<IUserStorage, InMemoryUserStorage>();
-// builder.Services.AddScoped<IUserService, UserService>();
+// Singleton Userstorage InMemory
+ builder.Services.AddSingleton<IUserStorage, UserStorage>();
+
+// repositories
+
+ //services
+ builder.Services.AddScoped<IUserService, UserService>();
 
 #endregion
 
@@ -31,7 +39,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
